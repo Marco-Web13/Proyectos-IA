@@ -6,3 +6,4 @@ Gomez Gastelum Diego Alejandro <br>
 - Arbol binario
 - Historia de la IA
 - Investigación sobre Sistemas de recomendaciones
+- Investigación de Agentes deliberativos
