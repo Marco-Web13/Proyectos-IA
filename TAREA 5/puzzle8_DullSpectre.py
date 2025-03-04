@@ -1,15 +1,16 @@
 # 8 puzzle solver
 import heapq
+import time
 
-puzzleInicial= [
-    [5, 3, 2],
-    [1, 4, 6],
-    [8, 7, 0]
-]
+puzzleInicial = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 0, 8] ]
 
-puzzleFinal=[  [1, 2, 3], 
-               [4, 5, 6], 
-               [7, 8, 0] ]
+puzzleFinal = [  
+    [1, 2, 3], 
+    [4, 5, 6], 
+    [7, 8, 0] ]
 
 def printPuzzle(puzzle):
     for i in range(3):
@@ -90,10 +91,8 @@ def algoritmo_a_star(puzzle):
     nodosVisitados = set()
     cola = []
     heapq.heappush(cola, Node(puzzle, "", 0, CalcularHeuristica(puzzle), None))
-    a = 0
+
     while cola:
-        a += 1
-       
         actual = heapq.heappop(cola)
         if actual.puzzle == puzzleFinal:
             break
@@ -120,12 +119,24 @@ def algoritmo_a_star(puzzle):
                 print('| '+ str(num), end=' |')
             print()
 
-
     print("Cantidad de Movimientos: ",len(recorrido)-1)
     print('')
+ 
+def es_resoluble(puzzle):
+    plano = [num for fila in puzzle for num in fila if num != 0]  # Convertir a una lista lineal sin el 0
+    inversiones = sum(1 for i in range(len(plano)) for j in range(i + 1, len(plano)) if plano[i] > plano[j])
+    if inversiones % 2 == 0:
+        return True
+    return False
 
-print("Puzzle Inicial")
-printPuzzle(puzzleInicial)
-print("Solucion")
-algoritmo_a_star(puzzleInicial)
+tiempoInicial = time.time()
 
+if not es_resoluble(puzzleInicial):
+    print("🚨 Este puzzle NO tiene solución. Intenta con otro orden. 🚨")
+else:  
+    print("Puzzle Inicial")
+    printPuzzle(puzzleInicial)
+    print("Solucion")
+    algoritmo_a_star(puzzleInicial)
+
+print("Tiempo de ejecucion: ",time.time()-tiempoInicial, "segundos")
