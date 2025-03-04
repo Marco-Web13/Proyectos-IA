@@ -7,3 +7,4 @@ Gomez Gastelum Diego Alejandro <br>
 - Historia de la IA
 - Investigación sobre Sistemas de recomendaciones
 - Investigación de Agentes deliberativos
+- Puzzle 8 - Solución
