@@ -3,9 +3,9 @@
 Gomez Gastelum Diego Alejandro <br>
     9-10 am</h2>
 
-- Arbol binario
-  - prueba
-- Historia de la IA
-- Investigación sobre Sistemas de recomendaciones
-- Investigación de Agentes deliberativos
-- Puzzle 8 - Solución
+- UNIDAD 1
+  - Arbol Binario
+  - Historia de la IA
+  - Investigación sobre Sistemas de recomendaciones
+  - Investigación de Agentes deliberativos
+  - Puzzle 8 - Solución
