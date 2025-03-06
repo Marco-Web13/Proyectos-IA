@@ -4,6 +4,7 @@ Gomez Gastelum Diego Alejandro <br>
     9-10 am</h2>
 
 - Arbol binario
+  - prueba
 - Historia de la IA
 - Investigación sobre Sistemas de recomendaciones
 - Investigación de Agentes deliberativos
