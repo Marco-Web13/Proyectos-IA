@@ -1,0 +1,123 @@
+<div class="notebook">
+
+<div class="nb-cell html" name="htm1">
+<span>Sistema Experto: Diagnóstico de Fallas en PC</span>
+
+<ul>
+  integrantes:
+  <li>Diego alejandro Gomez Gastelum</li>
+  <li>Marco Josue Meza Manjarrez</li>
+</ul>
+</div>
+
+<div class="nb-cell query" name="q1">
+sistema_experto_pc.
+</div>
+
+<div class="nb-cell program" data-background="true" name="p2">
+% Sistema Experto para el Diagnóstico de Fallas en PC
+
+:- dynamic si/1, no/1.
+
+sistema_experto_pc :-
+    writeln("Sistema Experto para el Diagnóstico de Fallas en PC"),
+    writeln("Seleccione la categoría del problema:"),
+    writeln("1. Hardware"),
+    writeln("2. Sistema Operativo"),
+    writeln("3. Rendimiento"),
+    writeln("4. Red / Conectividad"),
+    writeln("5. Seguridad / Virus"),
+    read(Opcion),
+    diagnosticar(Opcion),
+    deshacer.
+
+diagnosticar(1) :- hipotesis_hardware(D), write('Diagnóstico: '), writeln(D).
+diagnosticar(2) :- hipotesis_windows(D), write('Diagnóstico: '), writeln(D).
+diagnosticar(3) :- hipotesis_rendimiento(D), write('Diagnóstico: '), writeln(D).
+diagnosticar(4) :- hipotesis_red(D), write('Diagnóstico: '), writeln(D).
+diagnosticar(5) :- hipotesis_seguridad(D), write('Diagnóstico: '), writeln(D).
+diagnosticar(_) :- writeln("Opción no válida."), fail.
+
+% Categoría: Hardware
+hipotesis_hardware(fuente_poder_danada) :- verificar(no_enciende), verificar(no_luces), verificar(no_ventiladores).
+hipotesis_hardware(falla_ram) :- verificar(pitidos).
+hipotesis_hardware(falla_video) :- verificar(enciende), verificar(no_imagen).
+hipotesis_hardware(sobrecalentamiento) :- verificar(se_apaga_tras_segundos).
+hipotesis_hardware(falla_placa_madre) :- verificar(ventilador_intermitente).
+hipotesis_hardware(falla_bios) :- verificar(no_pitidos), verificar(pantalla_negra).
+hipotesis_hardware(reinicio_bucle) :- verificar(reinicia_solo).
+hipotesis_hardware(cortocircuito) :- verificar(se_apaga_inmediatamente).
+hipotesis_hardware(error_bios) :- verificar(leds_parpadean).
+hipotesis_hardware(problema_disco_arranque) :- verificar(no_arranca).
+hipotesis_hardware(desconocido).
+
+% Categoría: Sistema Operativo
+hipotesis_windows(pantalla_azul) :- verificar(pantalla_azul_inicio).
+hipotesis_windows(reparacion_windows) :- verificar(reparacion_automatica).
+hipotesis_windows(falta_bootloader) :- verificar(mensaje_bootmgr).
+hipotesis_windows(kernel_driver_error) :- verificar(reinicia_inmediatamente).
+hipotesis_windows(error_mbr) :- verificar(cursor_pantalla_negra).
+hipotesis_windows(fallo_arranque) :- verificar(error_arranque).
+hipotesis_windows(disco_no_detectado) :- verificar(no_detecta_disco).
+hipotesis_windows(driver_congelado) :- verificar(congelado_inicio).
+hipotesis_windows(error_usb) :- verificar(no_funciona_mouse_teclado).
+hipotesis_windows(perfil_malware) :- verificar(no_abren_aplicaciones).
+hipotesis_windows(desconocido).
+
+% Categoría: Rendimiento
+hipotesis_rendimiento(inicio_lento) :- verificar(arranque_lento).
+hipotesis_rendimiento(uso_cpu_alto) :- verificar(cpu_al_100).
+hipotesis_rendimiento(uso_disco_alto) :- verificar(disco_al_100).
+hipotesis_rendimiento(poca_ram) :- verificar(respuesta_lenta_app).
+hipotesis_rendimiento(extensiones_malware) :- verificar(navegador_congelado).
+hipotesis_rendimiento(conflicto_software) :- verificar(lentitud_post_instalacion).
+hipotesis_rendimiento(memoria_insuficiente) :- verificar(congelamiento_con_varios_programas).
+hipotesis_rendimiento(procesos_colgados) :- verificar(apagado_lento).
+hipotesis_rendimiento(indexacion_disco) :- verificar(disco_trabaja_constante).
+hipotesis_rendimiento(recomendacion_ssd) :- verificar(tiene_hdd).
+hipotesis_rendimiento(desconocido).
+
+% Categoría: Red
+hipotesis_red(problema_red) :- verificar(sin_acceso_red).
+hipotesis_red(adaptador_desactivado) :- verificar(wifi_no_aparece).
+hipotesis_red(interferencia_wifi) :- verificar(wifi_inestable).
+hipotesis_red(error_dns) :- verificar(red_local_sin_internet).
+hipotesis_red(error_dhcp) :- verificar(no_ip_por_cable).
+hipotesis_red(senal_debil) :- verificar(wifi_debil).
+hipotesis_red(mala_gestion_energia) :- verificar(wifi_se_pierde_tras_suspension).
+hipotesis_red(driver_red_danado) :- verificar(alerta_red).
+hipotesis_red(ip_mal_configurada) :- verificar(otros_tienen_internet_yo_no).
+hipotesis_red(conflicto_repetidores) :- verificar(redes_duplicadas).
+hipotesis_red(desconocido).
+
+% Categoría: Seguridad
+hipotesis_seguridad(adware) :- verificar(popups).
+hipotesis_seguridad(hijacking) :- verificar(pagina_inicio_cambia).
+hipotesis_seguridad(malware_activo) :- verificar(antivirus_desactivado).
+hipotesis_seguridad(spyware) :- verificar(programas_autoinstalados).
+hipotesis_seguridad(bloqueo_malware) :- verificar(admin_tareas_no_abre).
+hipotesis_seguridad(minado_oculto) :- verificar(cpu_disco_100_sin_razon).
+hipotesis_seguridad(instalacion_maliciosa) :- verificar(iconos_desconocidos).
+hipotesis_seguridad(control_remoto) :- verificar(firewall_desactivado).
+hipotesis_seguridad(redireccion_maliciosa) :- verificar(navegador_abre_solo).
+hipotesis_seguridad(malware_replicante) :- verificar(procesos_duplicados).
+hipotesis_seguridad(desconocido).
+
+% Verificación y preguntas
+verificar(S) :- si(S), !.
+verificar(S) :- no(S), !, fail.
+verificar(S) :- preguntar(S).
+
+preguntar(P) :-
+    write('¿'), write(P), write('? (si/no): '),
+    read(R),
+    nl,
+    ((R == si) -&gt; assert(si(P)) ; assert(no(P)), fail).
+
+% Limpiar respuestas
+deshacer :- retract(si(_)), fail.
+deshacer :- retract(no(_)), fail.
+deshacer.
+</div>
+
+</div>
